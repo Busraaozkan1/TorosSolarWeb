@@ -1,0 +1,80 @@
+/* _content/TorosSolar/Views/Shared/_Layout.cshtml.rz.scp.css */
+:root[b-wjc5zsayry] {
+    --gold: #00D4FF;        /* Buz Mavisi */
+    --dark-bg: #05080A;     /* En Koyu Arka Plan */
+    --card-bg: #0D141C;     /* Kart Arka Planı */
+    --text-gray: #a0a0a0;
+}
+
+body[b-wjc5zsayry] {
+    background-color: var(--dark-bg);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 60px;
+}
+
+/* Navbar Ayarları */
+.custom-nav[b-wjc5zsayry] {
+    background: rgba(5, 8, 10, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand[b-wjc5zsayry] {
+    font-weight: 800;
+    color: var(--gold) !important;
+    letter-spacing: 2px;
+}
+
+.nav-link[b-wjc5zsayry] {
+    color: rgb(255, 255, 255) !important;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover[b-wjc5zsayry] {
+    color: var(--gold) !important;
+}
+
+/* Genel Tasarım Classları */
+.text-gold[b-wjc5zsayry] { color: var(--gold) !important; }
+.bg-darker[b-wjc5zsayry] { background-color: var(--dark-bg) !important; }
+.bg-dark[b-wjc5zsayry] { background-color: var(--card-bg) !important; }
+
+.section-padding[b-wjc5zsayry] { padding: 80px 0; }
+
+.btn-gold[b-wjc5zsayry] {
+    background-color: var(--gold);
+    color: var(--dark-bg);
+    font-weight: 600;
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+.btn-gold:hover[b-wjc5zsayry] {
+    background-color: white;
+    transform: translateY(-3px);
+}
+
+.border-gold-thin[b-wjc5zsayry] {
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+}
+
+/* Kartlar */
+.service-card[b-wjc5zsayry], .product-card[b-wjc5zsayry] {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.service-card:hover[b-wjc5zsayry] {
+    border-color: var(--gold);
+}
+
+.footer[b-wjc5zsayry] {
+    background-color: var(--dark-bg) !important;
+    border-top: 1px solid rgba(0, 212, 255, 0.1) !important;
+}

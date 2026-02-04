@@ -1,0 +1,205 @@
+﻿@model List<TorosSolar.Models.Product> 
+
+@{
+    ViewData["Title"] = "Geleceğin Enerjisi | Toros Solar";
+}
+
+<section id="anasayfa" class="hero-section d-flex align-items-center" style="position: relative; min-height: 100vh; overflow: hidden;">
+    
+<video id="heroVideo" autoplay muted loop playsinline 
+       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+    <source id="videoSource" src="/videos/gunduz.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+</video>
+
+    <div class="container text-center" style="z-index: 1;">
+        <h6 class="text-uppercase text-gold mb-3" style="letter-spacing: 5px; font-weight: 700;"></h6>
+        <h1 class="display-2 fw-bold mb-4">Sınırsız Enerji, <br> <span class="text-gold">Sürdürülebilir Gelecek</span></h1>
+        <p class="lead mb-5 text-light opacity-75" style="max-width: 700px; margin: 0 auto;">
+            En verimli güneş paneli çözümleriyle tanışın. Doğayı korurken enerji maliyetlerinizi modern teknolojiyle sıfıra indirin.
+        </p>
+        <div class="hero-btns">
+            <a href="#urunlerimiz" class="btn btn-gold px-5 py-3 me-3">Ürünleri Keşfet</a>
+            <a href="#iletisim" class="btn btn-outline-light px-5 py-3">Bize Ulaşın</a>
+        </div>
+    </div>
+</section>
+
+<section id="hakkimizda" class="section-padding bg-dark">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="image-wrapper position-relative">
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072" class="img-fluid rounded-3 shadow-lg border-gold-thin" alt="Premium Toros Solar">
+                </div>
+            </div>
+            <div class="col-lg-6 ps-lg-5 text-start">
+                <h6 class="text-gold text-uppercase fw-bold" style="letter-spacing: 2px;">Biz Kimiz?</h6>
+                <h2 class="display-5 fw-bold mb-4 text-white">Torosların Gücünü <br> Güneşle Birleştiriyoruz</h2>
+                <p class="text-gray lead mb-4">TorosSolar, sürdürülebilir enerji dönüşümünde öncü rol oynamak için kuruldu. Sadece panel kurmuyoruz, yüksek mühendislik çözümleriyle geleceği inşa ediyoruz.</p>
+                <div class="about-features">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="feature-icon-sm me-3">
+                            <i class="bi bi-patch-check text-gold fs-3"></i>
+                        </div>
+                        <span class="text-white fw-light fs-5">Sektörde 15 Yıllık Mühendislik Tecrübesi</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="feature-icon-sm me-3">
+                            <i class="bi bi-shield-check text-gold fs-3"></i>
+                        </div>
+                        <span class="text-white fw-light fs-5">Yüksek Verimli Panel Garantisi</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="feature-icon-sm me-3">
+                            <i class="bi bi-headset text-gold fs-3"></i>
+                        </div>
+                        <span class="text-white fw-light fs-5">7/24 Teknik Destek ve İzleme Hizmeti</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="hizmetlerimiz" class="section-padding bg-darker">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-gold text-uppercase fw-bold" style="letter-spacing: 2px;">Neler Yapıyoruz?</h6>
+            <h2 class="section-title text-white">Hizmetlerimiz</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-house-gear"></i></div>
+                    <h4>Güneş Enerjisi Sistemleri</h4>
+                    <p>Geleceğin teknolojisini bugünle buluşturuyoruz. Enerji bağımsızlığınızı modern çözümlerle tasarlıyoruz.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card active">
+                    <div class="service-icon"><i class="bi bi-factory"></i></div>
+                    <h4>Solar Elektrik Üretimi</h4>
+                    <p>Kendi enerjinizi üretmenin en prestijli yolu. Süreci kesintisiz ve kârlı bir yatırıma dönüştürüyoruz.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="bi bi-battery-charging"></i></div>
+                    <h4>Güneş Paneli Kurulumu</h4>
+                    <p>Mühendislik disipliniyle kusursuz uygulama. Her projeye özel yüksek performans garantisi sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="urunlerimiz" class="section-padding bg-dark">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-gold text-uppercase fw-bold" style="letter-spacing: 2px;">Teknolojimiz</h6>
+            <h2 class="section-title text-white">Öne Çıkan Ürünler</h2>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            @if (Model != null && Model.Any())
+            {
+                var randomProducts = Model.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+
+                @foreach (var item in randomProducts)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <div class="product-badge">Premium Seçim</div>
+                            <div class="product-img-container">
+                                <img src="@item.ImageUrl" alt="@item.Name">
+                            </div>
+                            
+                            <div class="product-info">
+                                <h5>@item.Name</h5>
+                                <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-25">
+                                    <span class="text-gold fw-bold fs-5">$@item.Price.ToString("N0")</span>
+                                    <button class="btn-link" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">
+                                        Detaylar <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content bg-darker text-white border-gold-thin">
+                                <div class="modal-header border-secondary border-opacity-25">
+                                    <h5 class="modal-title">@item.Name</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body p-4 text-start">
+                                    <div class="text-center mb-4 bg-dark p-3 rounded shadow-sm">
+                                        <img src="@item.ImageUrl" class="img-fluid" style="max-height: 250px; object-fit: contain;">
+                                    </div>
+                                    <div class="text-gray mb-4">
+                                        @if (!string.IsNullOrEmpty(item.Description))
+                                        {
+                                            @Html.Raw(item.Description.Replace("\n", "<br>"))
+                                        }
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-gray small">Birim Fiyat</span>
+                                        <h3 class="text-gold mb-0">$@item.Price.ToString("N0")</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="/Home/Urunler" class="btn btn-outline-light px-5 py-3">
+                Tüm Ürünlerimizi Gör <i class="bi bi-grid-3x3-gap ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="iletisim" class="section-padding bg-darker">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-gold text-uppercase fw-bold" style="letter-spacing: 2px;">Bize Ulaşın</h6>
+            <h2 class="section-title text-white">İletişim & Konum</h2>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-5 text-start">
+                <div class="contact-card p-4 border-gold-thin bg-dark h-100">
+                    <p class="lead text-gray mb-5">Enerji maliyetlerinizi düşürmek ve size özel projelerimizi öğrenmek için bizimle iletişime geçin.</p>
+                    
+                    <div class="contact-info-item mb-4">
+                        <h5 class="text-gold mb-2"><i class="bi bi-geo-alt me-2"></i>Konum</h5>
+                        <p class="text-white opacity-75">Cumhuriyet mah. 1653 Sokak No.3 <br> Yenişehir / MERSİN</p>
+                    </div>
+
+                    <div class="contact-info-item mb-4">
+                        <h5 class="text-gold mb-2"><i class="bi bi-whatsapp me-2"></i>WhatsApp</h5>
+                        <a href="https://wa.me/905367333678" target="_blank" class="text-white text-decoration-none fs-5 fw-bold">+90 536 733 36 78</a>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <h5 class="text-gold mb-2"><i class="bi bi-envelope me-2"></i>E-Posta</h5>
+                        <a href="mailto:info@torossolar.com" class="text-white text-decoration-none fs-5">info@torossolar.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="map-container shadow-lg border-gold-thin" style="border-radius: 15px; overflow: hidden; height: 450px;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.123456789!2d34.58!3d36.80!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ4JzAwLjAiTiAzNMKwMzQnNDguMCJF!5e0!3m2!1str!2str!4v123456789" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

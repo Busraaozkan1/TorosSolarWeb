@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TorosSolar - Admin Paneli</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #f4f7f6; }
+        .sidebar { min-height: 100vh; background: #2c3e50; color: white; padding-top: 20px; }
+        .sidebar a { color: #bdc3c7; text-decoration: none; padding: 15px; display: block; transition: 0.3s; }
+        .sidebar a:hover { background: #34495e; color: white; border-left: 4px solid #3498db; }
+        .main-content { padding: 30px; }
+        .card { border: none; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="text-center mb-4">
+                    <h4 class="text-primary">TorosSolar</h4>
+                    <small>Admin Paneli</small>
+                </div>
+                <a href="/Product/Index"><i class="fas fa-boxes me-2"></i> Ürün Yönetimi</a>
+                <a href="/Product/Create"><i class="fas fa-plus-circle me-2"></i> Yeni Ürün Ekle</a>
+                <a href="#"><i class="fas fa-key me-2"></i> Şifre Değiştir</a>
+                <a href="/" class="mt-5 text-danger"><i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</a>
+            </nav>
+
+            <main class="col-md-10 main-content">
+                <div class="card p-4">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

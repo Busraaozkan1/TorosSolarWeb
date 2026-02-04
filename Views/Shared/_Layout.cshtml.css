@@ -1,0 +1,79 @@
+﻿:root {
+    --gold: #00D4FF;        /* Buz Mavisi */
+    --dark-bg: #05080A;     /* En Koyu Arka Plan */
+    --card-bg: #0D141C;     /* Kart Arka Planı */
+    --text-gray: #a0a0a0;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 60px;
+}
+
+/* Navbar Ayarları */
+.custom-nav {
+    background: rgba(5, 8, 10, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--gold) !important;
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255) !important;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--gold) !important;
+}
+
+/* Genel Tasarım Classları */
+.text-gold { color: var(--gold) !important; }
+.bg-darker { background-color: var(--dark-bg) !important; }
+.bg-dark { background-color: var(--card-bg) !important; }
+
+.section-padding { padding: 80px 0; }
+
+.btn-gold {
+    background-color: var(--gold);
+    color: var(--dark-bg);
+    font-weight: 600;
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+.btn-gold:hover {
+    background-color: white;
+    transform: translateY(-3px);
+}
+
+.border-gold-thin {
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+}
+
+/* Kartlar */
+.service-card, .product-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    border-color: var(--gold);
+}
+
+.footer {
+    background-color: var(--dark-bg) !important;
+    border-top: 1px solid rgba(0, 212, 255, 0.1) !important;
+}
