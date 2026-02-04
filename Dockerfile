@@ -1,14 +1,17 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# 1. SDK aşaması (Derleme için .NET 9.0 kullanıyoruz)
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
-# Tüm dosyaları kopyala
+# Dosyaları kopyala
 COPY . .
 
-# Klasör yapısına göre dosyayı bulup derleyelim
-# Eğer .csproj dosyası direkt karşındaysa bu satırı kullan:
+# Projeyi Release modunda derle
 RUN dotnet publish *.csproj -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# 2. Çalışma aşaması (Runtime için de .NET 9.0 kullanıyoruz)
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/out .
+
+# Uygulamayı başlat
 ENTRYPOINT ["dotnet", "TorosSolar.dll"]
