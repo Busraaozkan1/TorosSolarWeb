@@ -16,8 +16,19 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-md-4 col-sm-6">
-                        <div class="product-card h-100 d-flex flex-column">
-                            @* 1. DÜZELTME: Kart içindeki görseli çerçeveye sığdırdık *@
+                        <div class="product-card h-100 d-flex flex-column position-relative">
+                            
+                            @* --- SADECE GİRİŞ YAPANLAR İÇİN FAVORİ BUTONU --- *@
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <button class="btn border-0 position-absolute top-0 end-0 m-2 p-0 favorite-btn" 
+                                        onclick="toggleFavorite(@item.Id, this)"
+                                        style="z-index: 10; background: none;" 
+                                        title="Favorilere Ekle">
+                                    <i class="bi bi-heart text-danger fs-4 shadow-sm"></i>
+                                </button>
+                            }
+
                             <div style="background: rgba(255,255,255,0.05); padding: 10px;">
                                 <img src="@item.ImageUrl" class="img-fluid" alt="@item.Name" 
                                      style="height: 200px; width: 100%; object-fit: contain;">
@@ -25,8 +36,7 @@
                             
                             <div class="product-info flex-grow-1 d-flex flex-column justify-content-between">
                                 <div>
-                                    <h5 class="text-white">@item.Name</h5>
-                                    @* 2. DÜZELTME: TL yerine Manuel Dolar simgesi *@
+                                    <h5 style="color: #333; font-weight: bold;">@item.Name</h5>
                                     <h4 class="text-gold">$@item.Price.ToString("N0")</h4>
                                 </div>
                                 
@@ -39,6 +49,7 @@
                         </div>
                     </div>
 
+                    @* MODAL KISMI *@
                     <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content bg-dark text-white border-gold-thin">
@@ -47,13 +58,11 @@
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body p-4 text-start">
-                                    @* 3. DÜZELTME: Modal içindeki görselin de sığmasını sağladık *@
                                     <div class="text-center mb-3" style="background: #1a1a1a; border-radius: 8px;">
                                         <img src="@item.ImageUrl" class="img-fluid rounded" 
                                              style="max-height: 300px; object-fit: contain;">
                                     </div>
                                     
-                                    @* 4. DÜZELTME: Açıklamayı maddeler (alt alta) haline getirdik *@
                                     <div class="text-secondary mb-3">
                                         @if (!string.IsNullOrEmpty(item.Description))
                                         {
@@ -62,7 +71,6 @@
                                     </div>
                                     
                                     <hr class="border-secondary">
-                                    @* 5. DÜZELTME: Modal fiyatını da Dolar yaptık *@
                                     <h3 class="text-gold text-end">$@item.Price.ToString("N0")</h3>
                                 </div>
                             </div>
@@ -73,3 +81,33 @@
         }
     </div>
 </section>
+
+@* Layout'taki Scripts bölümüne gönderiyoruz, çakışmayı bu engeller *@
+@section Scripts {
+<script>
+function toggleFavorite(productId, button) {
+    const $icon = $(button).find('i');
+    
+    $.ajax({
+        url: '@Url.Action("ToggleFavorite", "Account")', 
+        type: 'POST',
+        data: { productId: productId },
+        success: function (response) {
+            if (response.success) {
+                if (response.action === "added") {
+                    $icon.removeClass('bi-heart').addClass('bi-heart-fill');
+                } else {
+                    $icon.removeClass('bi-heart-fill').addClass('bi-heart');
+                }
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function (xhr) {
+            console.error("Hata Detayı: ", xhr.responseText);
+            alert("Sistem şu an bu isteğe cevap veremiyor. Kod: " + xhr.status);
+        }
+    });
+}
+</script>
+}

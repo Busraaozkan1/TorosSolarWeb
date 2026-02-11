@@ -1,0 +1,77 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using TorosSolar.Data;
+using TorosSolar.Models;
+using Microsoft.AspNetCore.Authorization;
+
+namespace TorosSolar.Controllers
+{
+    // Giriş yapmamış kullanıcıların bu controller'a erişmesini engeller
+    [Authorize]
+    // KRİTİK EKLEME: Tarayıcının 'Favorite' klasörünü ve içindeki işlemleri bulmasını zorunlu kılar
+    [Route("[controller]/[action]")]
+    public class FavoriteController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public FavoriteController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // AJAX isteğinin hedefi: /Favorite/ToggleFavorite
+        [HttpPost]
+        public async Task<IActionResult> ToggleFavorite(int productId)
+        {
+            // Giriş yapan kullanıcının ID'sini Claims üzerinden çekiyoruz
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Json(new { success = false, message = "Lütfen önce giriş yapın." });
+            }
+
+            try 
+            {
+                // 1. Adım: Ürün gerçekten veritabanında var mı?
+                var productExists = await _context.Products.AnyAsync(p => p.Id == productId);
+                if (!productExists)
+                {
+                    return Json(new { success = false, message = "Ürün bulunamadı." });
+                }
+
+                // 2. Adım: Kullanıcının bu ürünü daha önce favoriye ekleyip eklemediğini kontrol et
+                // Not: UserId veritabanında string ise f.UserId == userId, int ise f.UserId.ToString() == userId kullanılır.
+                var existingFavorite = await _context.Favorites
+                    .FirstOrDefaultAsync(f => f.ProductId == productId && f.UserId.ToString() == userId);
+
+                if (existingFavorite != null)
+                {
+                    // Ürün zaten favorilerde, o halde favoriden çıkar (Toggle mantığı)
+                    _context.Favorites.Remove(existingFavorite);
+                    await _context.SaveChangesAsync();
+                    return Json(new { success = true, action = "removed", message = "Favorilerden kaldırıldı." });
+                }
+                else
+                {
+                    // Ürün favorilerde değil, o halde yeni bir kayıt oluştur
+                    var favorite = new Favorite
+                    {
+                        ProductId = productId,
+                        UserId = userId // Favorite modelindeki UserId tipine göre otomatik eşleşir
+                    };
+
+                    _context.Favorites.Add(favorite);
+                    await _context.SaveChangesAsync();
+                    return Json(new { success = true, action = "added", message = "Favorilere eklendi!" });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda detaylı mesajı AJAX'a gönder
+                return Json(new { success = false, message = "Sistem hatası: " + ex.Message });
+            }
+        }
+    }
+}

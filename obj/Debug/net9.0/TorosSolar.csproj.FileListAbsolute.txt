@@ -1,5 +1,11 @@
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\web.config
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\appsettings.json
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\appsettings.Development.json
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\appsettings.json
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\TorosSolar.deps.json
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\TorosSolar.runtimeconfig.json
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\taze_paket\TorosSolar.staticwebassets.endpoints.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\TorosSolar.staticwebassets.runtime.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\TorosSolar.staticwebassets.endpoints.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\bin\Debug\net9.0\TorosSolar.exe
@@ -162,10 +168,13 @@ C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debu
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.RazorAssemblyInfo.cache
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.RazorAssemblyInfo.cs
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.sourcelink.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\scopedcss\bundle\TorosSolar.styles.css
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\scopedcss\projectbundle\TorosSolar.bundle.scp.css
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\ix3mh5twrn-kk3zi7tj6p.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\r8syklul1g-61n19gt1b8.gz
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\hrxlai4emu-37aju4oumo.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\kp0xr2xlxx-bqjiyaj88i.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\amgig7gicp-c2jlpeoesf.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\onj1gd0hc5-erw9l3u2r3.gz
@@ -225,6 +234,8 @@ C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debu
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\o2kr5xui2r-muycvpuwrr.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\vpfu2m29c2-87fc7y1x7t.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\ikiy1ajs0l-mlv21k5csn.gz
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\vcark1ms2k-yey0w14m3z.gz
+C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\vymqtd0stz-yey0w14m3z.gz
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\staticwebassets.development.json
@@ -235,7 +246,3 @@ C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debu
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.pdb
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\TorosSolar.genruntimeconfig.cache
 C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\ref\TorosSolar.dll
-C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\vcark1ms2k-yey0w14m3z.gz
-C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\vymqtd0stz-yey0w14m3z.gz
-C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\hrxlai4emu-37aju4oumo.gz
-C:\Users\Büşra\OneDrive - atu.edu.tr\Masaüstü\TorosSolar\TorosSolar\obj\Debug\net9.0\compressed\ix3mh5twrn-8kiw75dqg9.gz

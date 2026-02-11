@@ -14,47 +14,78 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg custom-nav fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    TOROS<span style="color:rgb(59, 59, 59)">SOLAR</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="/#anasayfa">Anasayfa</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#hakkimizda">Hakkımızda</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#hizmetlerimiz">Hizmetlerimiz</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#urunlerimiz">Ürünlerimiz</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#iletisim">İletişim</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main role="main">
-        @RenderBody()
-    </main>
-
-    <footer class="footer text-center py-5">
+<header>
+    <nav class="navbar navbar-expand-lg custom-nav fixed-top">
         <div class="container">
-            <div class="mb-3">
-                <h4 style="color:var(--gold); font-weight: 800; letter-spacing: 2px;">TOROSSOLAR</h4>
-            </div>
-            <div class="mb-3 text-white-50">
-                <small>Mersin'den Dünyaya Sürdürülebilir Enerji</small>
-            </div>
-            <span class="text-muted small">&copy; 2026 - Geleceğin Enerjisi - Tüm Hakları Saklıdır.</span>
-        </div>
-    </footer>
+            <a class="navbar-brand" href="/">
+                TOROS<span style="color:rgb(59, 59, 59)">SOLAR</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="/#anasayfa">Anasayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#hakkimizda">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#hizmetlerimiz">Hizmetlerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#urunlerimiz">Ürünlerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#iletisim">İletişim</a></li>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        @* Admin Paneli butonu buradan kaldırıldı *@
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-outline-warning ms-lg-3 px-3 me-2" 
+                               style="border-radius: 20px;" 
+                               asp-controller="Account" 
+                               asp-action="Profile">
+                                 <i class="bi bi-person-circle"></i> Profilim
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-outline-danger px-3" 
+                               style="border-radius: 20px;" 
+                               asp-controller="Account" 
+                               asp-action="Logout">Çıkış Yap</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-outline-light ms-lg-3 px-3" 
+                               style="border-radius: 20px;" 
+                               asp-controller="Account" 
+                               asp-action="UserLogin">Giriş Yap / Kayıt Ol</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+    @RenderBody()
+</main>
+
+<footer class="footer text-center py-5">
+    <div class="container">
+        <div class="mb-3">
+            <h4 style="color:var(--gold); font-weight: 800; letter-spacing: 2px;">TOROSSOLAR</h4>
+        </div>
+        <div class="mb-3 text-white-50">
+            <small>Mersin'den Dünyaya Sürdürülebilir Enerji</small>
+        </div>
+        <div class="mt-2">
+            <span class="text-white-50 small">&copy; 2026 - Geleceğin Enerjisi - Tüm Hakları Saklıdır.</span>
+        </div>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

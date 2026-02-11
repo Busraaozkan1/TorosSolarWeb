@@ -11,6 +11,8 @@
         .sidebar { min-height: 100vh; background: #2c3e50; color: white; padding-top: 20px; }
         .sidebar a { color: #bdc3c7; text-decoration: none; padding: 15px; display: block; transition: 0.3s; }
         .sidebar a:hover { background: #34495e; color: white; border-left: 4px solid #3498db; }
+        /* Aktif olan menü öğesi için küçük bir dokunuş */
+        .sidebar a.active { background: #34495e; color: white; border-left: 4px solid #f1c40f; }
         .main-content { padding: 30px; }
         .card { border: none; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
     </style>
@@ -23,10 +25,16 @@
                     <h4 class="text-primary">TorosSolar</h4>
                     <small>Admin Paneli</small>
                 </div>
+                
+                @* Linkler Controller ve Action isimlerine göre güncellendi *@
                 <a href="/Product/Index"><i class="fas fa-boxes me-2"></i> Ürün Yönetimi</a>
                 <a href="/Product/Create"><i class="fas fa-plus-circle me-2"></i> Yeni Ürün Ekle</a>
-                <a href="#"><i class="fas fa-key me-2"></i> Şifre Değiştir</a>
-                <a href="/" class="mt-5 text-danger"><i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</a>
+                
+                @* BURASI DÜZELTİLDİ: Artık Şifre Değiştir sayfasına gider *@
+                <a href="/Account/ChangePassword"><i class="fas fa-key me-2"></i> Şifre Değiştir</a>
+                
+                @* BURASI DÜZELTİLDİ: Sadece ana sayfaya gitmez, oturumu kapatır *@
+                <a href="/Account/Logout" class="mt-5 text-danger border-0"><i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap</a>
             </nav>
 
             <main class="col-md-10 main-content">
@@ -36,5 +44,8 @@
             </main>
         </div>
     </div>
+
+    @* Sayfalardan gelecek scriptlerin (Validation vb.) çalışması için bu satır önemli *@
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,61 @@
+@model TorosSolar.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container mt-5 pt-5">
+    <div class="card bg-dark text-white p-4" style="border: 1px solid #d4af37; border-radius: 15px;">
+        <div class="row">
+            @* Ürün Görseli *@
+            <div class="col-md-5 text-center" style="background-color: white; border-radius: 10px; padding: 20px; display: flex; align-items: center; justify-content: center;">
+                <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Name" style="max-height: 450px; object-fit: contain;">
+            </div>
+
+            @* Ürün Bilgileri *@
+            <div class="col-md-7 ps-md-5 mt-4 mt-md-0">
+                <h1 class="display-5 fw-bold" style="color:#d4af37">@Model.Name</h1>
+                <hr class="border-secondary">
+                
+                <div class="my-4">
+                    <h2 class="fw-bold">@Model.Price.ToString("N2") $</h2>
+                    <span class="badge bg-success">Stokta Var</span>
+                </div>
+
+                <div class="product-description mt-4">
+                    <h5 class="text-gold mb-3" style="color:#d4af37">Teknik Özellikler</h5>
+                    
+                    @* Açıklamayı satır satır bölüp madde haline getiren kısım *@
+                    <ul class="list-unstyled">
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            @* Açıklamayı her satır başından (Enter tuşundan) bölüyoruz *@
+                            var features = Model.Description.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                            foreach (var feature in features)
+                            {
+                                <li class="text-secondary mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-circle text-gold me-2 mt-1" style="color:#d4af37"></i>
+                                    <span>@feature</span>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+
+                @* Buton Grubu *@
+                <div class="mt-5 d-grid gap-2 d-md-flex">
+                    <a href="javascript:history.back()" class="btn btn-outline-light px-4 d-flex align-items-center justify-content-center">
+                        <i class="bi bi-arrow-left me-2"></i> Geri Dön
+                    </a>
+
+                    @* WhatsApp İletişim Butonu *@
+                    <a href="https://wa.me/905367333678?text=Merhaba,%20TorosSolar%20sitenizden%20'@Uri.EscapeDataString(Model.Name)'%20ürünü%20hakkında%20bilgi%20almak%20istiyorum." 
+                       target="_blank" 
+                       class="btn px-5 fw-bold d-flex align-items-center justify-content-center" 
+                       style="background-color: #25D366; border: none; color: white; min-height: 45px;">
+                        <i class="bi bi-whatsapp me-2" style="font-size: 1.2rem;"></i> İletişime Geç
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

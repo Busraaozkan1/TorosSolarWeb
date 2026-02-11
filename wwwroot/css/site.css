@@ -278,3 +278,81 @@ footer {
         var(--bg-warm-beige) 100%
     ) !important;
 }
+/* Premium Login & Register Stilleri */
+.auth-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+}
+
+.auth-header h2 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.auth-header p {
+    color: #94a3b8;
+}
+
+.premium-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border-radius: 12px !important;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.premium-input:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #f97316 !important; /* Toros Orange */
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2) !important;
+}
+
+.btn-premium {
+    background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-premium:hover {
+    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.4);
+    transform: scale(1.02);
+}
+
+.security-box {
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px dashed #f97316;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    color: #f97316;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

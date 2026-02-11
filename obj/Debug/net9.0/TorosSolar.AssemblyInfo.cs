@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TorosSolar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b5396bd32bff989f69047f2297e604a6806c300")]
 [assembly: System.Reflection.AssemblyProductAttribute("TorosSolar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TorosSolar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

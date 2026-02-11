@@ -15,8 +15,9 @@
     <div class="container text-center" style="z-index: 1;">
         <h6 class="text-uppercase text-gold mb-3" style="letter-spacing: 5px; font-weight: 700;"></h6>
         <h1 class="display-2 fw-bold mb-4">Sınırsız Enerji, <br> <span class="text-gold">Sürdürülebilir Gelecek</span></h1>
-        <p class="lead mb-5 text-light opacity-75" style="max-width: 700px; margin: 0 auto;">
-            En verimli güneş paneli çözümleriyle tanışın. Doğayı korurken enerji maliyetlerinizi modern teknolojiyle sıfıra indirin.
+        <p class="lead mb-5 text-white fw-medium" style="max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+    En verimli güneş paneli çözümleriyle tanışın. Doğayı korurken enerji maliyetlerinizi modern teknolojiyle sıfıra indirin.
+</p>
         </p>
         <div class="hero-btns">
             <a href="#urunlerimiz" class="btn btn-gold px-5 py-3 me-3">Ürünleri Keşfet</a>
@@ -109,7 +110,19 @@
                 @foreach (var item in randomProducts)
                 {
                     <div class="col-lg-4 col-md-6">
-                        <div class="product-card">
+                        <div class="product-card position-relative"> @* position-relative ekledik *@
+                            
+                            @* --- Sadece Giriş Yapanlar İçin Favori Butonu --- *@
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <button class="btn border-0 position-absolute top-0 end-0 m-3 p-0" 
+                                        style="z-index: 5; background: none;" 
+                                        title="Favorilere Ekle">
+                                    <i class="bi bi-heart text-danger fs-4 shadow-sm"></i>
+                                </button>
+                            }
+                            @* ---------------------------------------------- *@
+
                             <div class="product-badge">Premium Seçim</div>
                             <div class="product-img-container">
                                 <img src="@item.ImageUrl" alt="@item.Name">

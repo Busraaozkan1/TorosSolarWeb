@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization; // Güvenlik için gerekli kütüphane
 using TorosSolar.Data;
 using TorosSolar.Models;
 
 namespace TorosSolar.Controllers
 {
+    // [Authorize] özniteliği sayesinde, sisteme giriş yapmamış hiç kimse 
+    // doğrudan URL yazarak (Product/Index gibi) bu işlemlere erişemez.
+    [Authorize] 
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -13,87 +18,121 @@ namespace TorosSolar.Controllers
             _context = context;
         }
 
-        // 1. LİSTELEME: Ürünlerin listelendiği ana sayfa
-        public IActionResult Index()
+        // 1. LİSTELEME: Admin panelinde ürünlerin listelendiği ana sayfa
+        public async Task<IActionResult> Index()
         {
-            var products = _context.Products.ToList();
+            var products = await _context.Products.ToListAsync();
             return View(products);
         }
 
-        // 2. EKLEME (GET): Boş form sayfasını açar
+        // 2. DETAY: Tek bir ürünün bilgilerini getirir
+        // Not: Bu sayfa hem admin panelinde hem de kullanıcı tarafında izlenebilir.
+        // Eğer kullanıcıların giriş yapmadan detay görmesini istiyorsan bu metodun üzerine [AllowAnonymous] ekleyebilirsin.
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // 3. EKLEME (GET): Boş form sayfasını açar
         public IActionResult Create()
         {
             return View();
         }
 
-        // 3. EKLEME (POST): Formdan gelen veriyi ve resmi kaydeder
+        // 4. EKLEME (POST): Formdan gelen veriyi ve resmi kaydeder
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile? imageFile)
         {
-            if (imageFile != null && imageFile.Length > 0)
+            if (ModelState.IsValid)
             {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
-                if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                var filePath = Path.Combine(folderPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    await imageFile.CopyToAsync(stream);
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
+                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    product.ImageUrl = "/img/" + fileName;
                 }
 
-                product.ImageUrl = "/img/" + fileName;
+                _context.Add(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View(product);
         }
 
-        // 4. DÜZENLEME (GET): Mevcut bilgileri forma doldurur
-        public IActionResult Edit(int id)
+        // 5. DÜZENLEME (GET): Mevcut bilgileri forma doldurur
+        public async Task<IActionResult> Edit(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null) return NotFound();
             return View(product);
         }
 
-        // 5. DÜZENLEME (POST): Güncellenen verileri kaydeder
+        // 6. DÜZENLEME (POST): Güncellenen verileri kaydeder
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product, IFormFile? imageFile)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile? imageFile)
         {
-            if (imageFile != null && imageFile.Length > 0)
-            {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                var filePath = Path.Combine(folderPath, fileName);
+            if (id != product.Id) return NotFound();
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    await imageFile.CopyToAsync(stream);
-                }
-                product.ImageUrl = "/img/" + fileName;
-            }
-            else
-            {
-                // Yeni resim seçilmediyse eski resim yolunu korumak için takip et
-                _context.Entry(product).Property(x => x.ImageUrl).IsModified = false;
-            }
+                    if (imageFile != null && imageFile.Length > 0)
+                    {
+                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                        var filePath = Path.Combine(folderPath, fileName);
 
-            _context.Products.Update(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+                        product.ImageUrl = "/img/" + fileName;
+                    }
+                    else
+                    {
+                        // Resim yüklenmediyse mevcut resmi korumak için takip et
+                        _context.Entry(product).Property(x => x.ImageUrl).IsModified = false;
+                    }
+
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.Products.Any(e => e.Id == product.Id)) return NotFound();
+                    else throw;
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
         }
 
-        // 6. SİLME: Ürünü veritabanından kaldırır
-        public IActionResult Delete(int id)
+        // 7. SİLME: Ürünü veritabanından kaldırır
+        public async Task<IActionResult> Delete(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
                 _context.Products.Remove(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
         }
